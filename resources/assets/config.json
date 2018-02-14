@@ -16,5 +16,46 @@
     "app/**/*.php",
     "config/**/*.php",
     "resources/views/**/*.php"
-  ]
+  ],
+  "custom_image_sizes": {
+    "enabled": false,
+    "config": {
+      "project-thumbnail": {
+        "name": "Project thumbnail",
+        "crop": false,
+        "width": 221,
+        "height": 166
+      }
+    }
+  },
+  "custom_post_types": {
+    "enabled": false,
+    "config": {
+      "projects": {
+        "labels": {
+          "name": "Projects",
+          "singular_name": "Project"
+        },
+        "public": true,
+        "has_archive": true,
+        "menu_icon": "dashicons-groups",
+        "hierarchical": true,
+        "rewrite": {
+          "slug": "project"
+        }
+      }
+    }
+  },
+  "acf_options_pages": {
+    "enabled": false,
+    "config": {
+      "global": {
+        "page_title": "Algemeen",
+        "menu_title": "Algemeen",
+        "menu_slug": "algemeen",
+        "capability": "manage_options",
+        "autoload": "true"
+      }
+    }
+  },
 }
