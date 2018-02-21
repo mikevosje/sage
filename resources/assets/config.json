@@ -34,7 +34,14 @@
       "projects": {
         "labels": {
           "name": "Projects",
-          "singular_name": "Project"
+          "singular_name": "Project",
+          "add_new": "Nieuw project",
+          "add_new_item": "Nieuw project",
+          "new_item": "Nieuw project",
+          "edit_item": "Pas project aan",
+          "view_item": "Bekijk project",
+          "view_items": "Bekijk projecten",
+          "search_items": "Zoek projecten"
         },
         "public": true,
         "has_archive": true,
