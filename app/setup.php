@@ -6,6 +6,7 @@ use Roots\Sage\Container;
 use Roots\Sage\Assets\JsonManifest;
 use Roots\Sage\Template\Blade;
 use Roots\Sage\Template\BladeProvider;
+use Wappz\Assets;
 
 /**
  * Theme assets
@@ -126,3 +127,79 @@ add_action('after_setup_theme', function () {
         return "<?= " . __NAMESPACE__ . "\\asset_path({$asset}); ?>";
     });
 });
+
+/**
+ * Register custom image sizes
+ *
+ * @param $sizes array
+ */
+function register_image_sizes( $sizes ) {
+    foreach ( $sizes as $id => $size ) {
+        add_image_size( $id, $size['width'], $size['height'], $size['crop'] );
+    }
+}
+
+/**
+ * Load images sizes on init
+ * @action init
+ */
+function init_image_sizes() {
+    $sizes = Assets\get_image_sizes();
+
+    if ( empty( $sizes ) ) {
+        return;
+    }
+
+    register_image_sizes( $sizes );
+}
+
+add_action( 'init', __NAMESPACE__ . '\\init_image_sizes' );
+
+/**
+ * Filter image sizes to include the new image sizes
+ *
+ * @param $sizes
+ *
+ * @return mixed
+ * @filter image_size_names_choose
+ */
+function filter_image_sizes( $sizes ) {
+    $new_sizes = Assets\get_image_sizes();
+
+    $new_sizes_merge_array = array();
+    foreach ( $new_sizes as $new_size_name => $new_size ) {
+        $new_sizes_merge_array[ $new_size_name ] = __( $new_size['name'] );
+    }
+
+    return array_merge( $sizes, $new_sizes_merge_array );
+}
+
+add_filter( 'image_size_names_choose', __NAMESPACE__ . '\\filter_image_sizes' );
+
+/**
+ * Add acf option pages from configuration
+ *
+ * @action init
+ */
+function init_acf_option_pages() {
+    $options_pages = Assets\get_acf_option_pages();
+
+    if ( ( ! function_exists( 'acf_add_options_page' ) ) || empty( $options_pages ) ) {
+        return;
+    }
+
+    foreach ( $options_pages as $option_page ) {
+        acf_add_options_page( $option_page );
+    }
+}
+
+add_action( 'init', __NAMESPACE__ . '\\init_acf_option_pages' );
+
+
+function init_ajaxurl() {
+    if ( Assets\ajax_enabled() ) {
+        echo '<script type="text/javascript"> var ajaxurl = "' . esc_html( admin_url( 'admin-ajax.php' ) ) . '";</script>';
+    }
+}
+
+add_action( 'wp_head', __NAMESPACE__ . '\\init_ajaxurl' );
