@@ -45,7 +45,7 @@ class Json_Manifest {
 }
 
 function asset_path( $filename ) {
-	$dist_path = get_template_directory_uri() . '/dist/';
+	$dist_path = get_theme_file_uri() . '/dist/';
 	$directory = dirname( $filename ) . '/';
 	$file      = basename( $filename );
 	static $manifest;

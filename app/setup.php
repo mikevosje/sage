@@ -203,3 +203,10 @@ function init_ajaxurl() {
 }
 
 add_action( 'wp_head', __NAMESPACE__ . '\\init_ajaxurl' );
+
+function my_acf_init() {
+
+	acf_update_setting('google_api_key', env('ACF_GOOGLE_MAPS_API'));
+}
+
+add_action('acf/init', __NAMESPACE__ . '\\my_acf_init');
