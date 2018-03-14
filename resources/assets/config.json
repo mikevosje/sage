@@ -17,6 +17,9 @@
     "config/**/*.php",
     "resources/views/**/*.php"
   ],
+  "browserSyncOptions": {
+    "open": false
+  },
   "custom_image_sizes": {
     "enabled": false,
     "config": {
@@ -64,5 +67,5 @@
         "autoload": "true"
       }
     }
-  },
+  }
 }
