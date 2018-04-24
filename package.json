@@ -1,6 +1,6 @@
 {
   "name": "sage",
-  "version": "9.0.27",
+  "version": "9.0.28",
   "author": "Roots <team@roots.io>",
   "homepage": "https://roots.io/sage/",
   "private": true,
@@ -105,6 +105,9 @@
   "dependencies": {
     "bootstrap": "v4.0.0",
     "jquery": "^3.3.1",
-    "popper.js": "^1.12.9"
+    "popper.js": "^1.12.9",
+    "jquery-sticky": "^1.0.4",
+    "swiper": "^4.2.2",
+    "include-media": "^1.4.9"
   }
 }
