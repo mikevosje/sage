@@ -5,21 +5,10 @@
 @php(do_action('get_header'))
 @include('partials.header')
 @include('partials.header-slider')
-<div class="wrap container" role="document">
-    <div class="content">
-        @yield('contenttop')
-    </div>
-</div>
-<div class="content">
-    @yield('outsidecontainercontent')
-</div>
-<div class="wrap container" role="document">
-    <div class="content">
-        @yield('contentbottom')
-    </div>
-</div>
+@yield('content')
 @php(do_action('get_footer'))
 @include('partials.footer')
+@include('partials.footerscripts')
 @php(wp_footer())
 @include('partials.menu')
 </body>
